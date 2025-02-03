@@ -17,6 +17,7 @@ Develop a web-based Todo application using **ReactJS** with the given stack. The
 - Jest (for Unit Testing)
 - Zod or Yup (for Form Validation)
 - Vite or Create-React-App (Project Setup)
+- Storybook (for Documentation)
 
 ---
 
@@ -72,6 +73,10 @@ Please check the `postman_collection.json` for all available endpoints. Also che
 
 ### 4. Documentation
 - Provide **clear setup instructions** on how to install and run the application.
+- Document all components using **Storybook**:
+  - Include component variations and states
+  - Document props and their types
+  - Provide usage examples
 - Explain architectural choices and state management decisions.
 - Describe any **trade-offs** made during development.
 - Include API documentation if any API interactions are used.
@@ -81,7 +86,7 @@ Please check the `postman_collection.json` for all available endpoints. Also che
 - Follow a **structured commit history**.
 - Include a well-written **README.md** file.
 
-### 6. Nice to Have
+### 6. Nice to Have (Optional)
 - Support the Internationalization (i18n) feature.
 - Support the Dark Mode feature.
 
@@ -95,7 +100,7 @@ Please check the `postman_collection.json` for all available endpoints. Also che
 - **TypeScript Usage**: Effective use of types and interfaces.
 - **Form Validation**: Proper implementation using Zod or Yup.
 - **Testing**: Well-written unit tests with good coverage.
-- **Documentation**: Clear, structured, and comprehensive.
+- **Documentation**: Clear, structured, and comprehensive documentation including Storybook implementation.
 - **Performance & Scalability**: Efficient rendering and API handling.
 
 ---

@@ -6,10 +6,8 @@ Develop a web-based Todo application using **ReactJS** with the given stack. The
 ---
 
 ## Technical Stack Requirements
-- React
-- React-DOM
-- React-Router-DOM
-- Zustand (State Management)
+- ReactJS, NextJS, VueJS, or using any UI Framework.
+- Zustand (State Management) (if needed)
 - Tailwind CSS
 - ShadCN (UI Components)
 - TypeScript
@@ -52,11 +50,11 @@ The Todo application should support the following functionalities:
 
 ## API Endpoints
 
-Please check the `postman_collection.json` for all available endpoints. Also check and read the `README.md` file under `/api` folder for more details.
+Please check the `postman_collection.json` for all available endpoints. Also, check and read the `README.md` file under `/api` folder for more details.
 
 ## Deliverables
 ### 1. Fully Functional Todo Application
-- Implement all features as described.
+- Please make sure to implement all features as described.
 - Use the specified tech stack.
 
 ### 2. Code Quality & Best Practices
@@ -102,6 +100,7 @@ Please check the `postman_collection.json` for all available endpoints. Also che
 - **Testing**: Well-written unit tests with good coverage.
 - **Documentation**: Clear, structured, and comprehensive documentation including Storybook implementation.
 - **Performance & Scalability**: Efficient rendering and API handling.
+- **Architecture & File Structure**: Well-organized project and follows good architecture.
 
 ---
 

@@ -6,3 +6,4 @@ export type {
   HttpMethod,
   RequestConfig,
 } from './api.types';
+export type { PaginationState, PaginationParams, PaginationControls } from './pagination.types';

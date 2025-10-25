@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui';
 import { TaskItem } from '../task-item/task-item';
+import { cn, getPageNumbers } from '@/utils';
 import type { Task } from '@/types';
 
 interface TaskListProps {
@@ -44,37 +45,7 @@ export const TaskList: React.FC<TaskListProps> = ({
     );
   }
 
-  const getPageNumbers = () => {
-    const pages: (number | string)[] = [];
-
-    if (totalPages <= 7) {
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-    } else {
-      pages.push(1);
-
-      if (currentPage > 3) {
-        pages.push('...');
-      }
-
-      for (
-        let i = Math.max(2, currentPage - 1);
-        i <= Math.min(totalPages - 1, currentPage + 1);
-        i++
-      ) {
-        pages.push(i);
-      }
-
-      if (currentPage < totalPages - 2) {
-        pages.push('...');
-      }
-
-      pages.push(totalPages);
-    }
-
-    return pages;
-  };
+  const pageNumbers = getPageNumbers(currentPage, totalPages);
 
   return (
     <div className="w-full">
@@ -108,16 +79,20 @@ export const TaskList: React.FC<TaskListProps> = ({
             </svg>
           </Button>
 
-          {getPageNumbers().map((page, index) => (
+          {pageNumbers.map((page, index) => (
             <React.Fragment key={index}>
               {page === '...' ? (
                 <span className="px-2 text-gray-500">...</span>
               ) : (
                 <Button
-                  variant={currentPage === page ? 'default' : 'outline'}
+                  variant="outline"
                   size="sm"
                   onClick={() => onPageChange(page as number)}
-                  className="min-w-[40px]"
+                  className={cn(
+                    'min-w-[40px]',
+                    currentPage === page &&
+                      'border-purple-600 text-purple-600 bg-purple-50 hover:bg-purple-100'
+                  )}
                 >
                   {page}
                 </Button>

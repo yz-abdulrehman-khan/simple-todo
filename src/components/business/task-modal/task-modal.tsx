@@ -4,6 +4,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
   DialogFooter,
   Button,
   Textarea,
@@ -63,6 +64,11 @@ export const TaskModal: React.FC<TaskModalProps> = ({
       <DialogContent className="sm:max-w-[525px]">
         <DialogHeader>
           <DialogTitle>{mode === 'add' ? 'Add Todo' : 'Edit Todo'}</DialogTitle>
+          <DialogDescription>
+            {mode === 'add'
+              ? 'Create a new todo item. Click save when you are done.'
+              : 'Edit your todo item. Click save when you are done.'}
+          </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit}>

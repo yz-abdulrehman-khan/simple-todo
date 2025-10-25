@@ -7,6 +7,7 @@ export const taskService = {
     return httpClient.get<Task[]>(API_ENDPOINTS.TASKS, {
       _page: params.page,
       _limit: params.limit,
+      deleted: false,
     });
   },
 
@@ -37,6 +38,16 @@ export const taskService = {
   },
 
   async getCounts(): Promise<TaskCounts> {
-    return httpClient.get<TaskCounts>(API_ENDPOINTS.COUNTS);
+    const [uncompletedTasks, completedTasks, deletedTasks] = await Promise.all([
+      httpClient.get<Task[]>(API_ENDPOINTS.TASKS, { deleted: false, completed: false }),
+      httpClient.get<Task[]>(API_ENDPOINTS.TASKS, { deleted: false, completed: true }),
+      httpClient.get<Task[]>(API_ENDPOINTS.TASKS, { deleted: true }),
+    ]);
+
+    return {
+      uncompleted: uncompletedTasks.length,
+      completed: completedTasks.length,
+      deleted: deletedTasks.length,
+    };
   },
 };

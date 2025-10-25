@@ -9,9 +9,12 @@ interface UseTasksReturn {
   isLoading: boolean;
   error: string | null;
   refetch: () => Promise<void>;
+  refetchTasksOnly: () => Promise<void>;
 }
 
 export const useTasks = (paginationParams: PaginationParams): UseTasksReturn => {
+  const { page, limit } = paginationParams;
+
   const [tasks, setTasks] = useState<Task[]>([]);
   const [counts, setCounts] = useState<TaskCounts>({
     uncompleted: 0,
@@ -28,7 +31,7 @@ export const useTasks = (paginationParams: PaginationParams): UseTasksReturn => 
 
     try {
       const [tasksData, countsData] = await Promise.all([
-        taskService.getTasks(paginationParams),
+        taskService.getTasks({ page, limit }),
         taskService.getCounts(),
       ]);
 
@@ -39,7 +42,17 @@ export const useTasks = (paginationParams: PaginationParams): UseTasksReturn => 
     } finally {
       setIsLoading(false);
     }
-  }, [paginationParams]);
+  }, [page, limit]);
+
+  const fetchTasksOnly = useCallback(async () => {
+    setError(null);
+    try {
+      const tasksData = await taskService.getTasks({ page, limit });
+      setTasks(tasksData);
+    } catch (err) {
+      setError(getErrorMessage(err));
+    }
+  }, [page, limit]);
 
   useEffect(() => {
     fetchTasks();
@@ -51,5 +64,6 @@ export const useTasks = (paginationParams: PaginationParams): UseTasksReturn => 
     isLoading,
     error,
     refetch: fetchTasks,
+    refetchTasksOnly: fetchTasksOnly,
   };
 };

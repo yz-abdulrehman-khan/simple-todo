@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { TaskHeader, TaskList, TaskModal } from '@/components/business';
-import { useTasks, useTaskMutations, usePagination, useModal } from '@/hooks';
+import { useTasks, useTaskMutations, usePagination, useModal, useOptimisticCounts } from '@/hooks';
+import { getCountsAfterAdd, getCountsAfterToggle, getCountsAfterDelete } from '@/helpers';
 import { PAGINATION_CONFIG } from '@/configs';
 import type { Task } from '@/types';
 
 export const TodoPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(PAGINATION_CONFIG.defaultPage);
 
-  const { tasks, counts, isLoading, error, refetch } = useTasks({
+  const { tasks, counts, isLoading, error, refetchTasksOnly } = useTasks({
     page: currentPage,
     limit: PAGINATION_CONFIG.defaultLimit,
   });
 
   const { createTask, updateTask, toggleTaskCompletion, deleteTask } = useTaskMutations();
-
   const { isOpen, mode, taskToEdit, openModal, closeModal } = useModal();
+  const { localCounts, withOptimisticUpdate } = useOptimisticCounts(counts);
 
-  const totalNonDeletedTasks = counts.uncompleted + counts.completed;
+  const totalNonDeletedTasks = localCounts.uncompleted + localCounts.completed;
 
   const { totalPages, goToPage, canGoPrevious, canGoNext } = usePagination({
     totalItems: totalNonDeletedTasks,
@@ -30,45 +31,36 @@ export const TodoPage: React.FC = () => {
     }
   }, [currentPage, totalPages]);
 
-  const handleAddClick = () => {
-    openModal('add');
-  };
-
-  const handleEditTask = (task: Task) => {
-    openModal('edit', task);
-  };
-
   const handleModalSubmit = async (text: string) => {
     if (mode === 'add') {
-      const newTask = await createTask({ text });
-      if (newTask) {
-        await refetch();
-      }
+      await withOptimisticUpdate(getCountsAfterAdd, () => createTask({ text }), refetchTasksOnly);
     } else if (mode === 'edit' && taskToEdit) {
-      const updatedTask = await updateTask(taskToEdit.id, { text });
-      if (updatedTask) {
-        await refetch();
-      }
+      const result = await updateTask(taskToEdit.id, {
+        text,
+        completed: taskToEdit.completed,
+        deleted: taskToEdit.deleted,
+      });
+      if (result) await refetchTasksOnly();
     }
   };
 
   const handleToggleTask = async (id: number, completed: boolean) => {
-    const updatedTask = await toggleTaskCompletion(id, completed);
-    if (updatedTask) {
-      await refetch();
-    }
+    await withOptimisticUpdate(
+      (prev) => getCountsAfterToggle(prev, completed),
+      () => toggleTaskCompletion(id, completed),
+      refetchTasksOnly
+    );
   };
 
   const handleDeleteTask = async (id: number) => {
-    const deletedTask = await deleteTask(id);
-    if (deletedTask) {
-      await refetch();
-    }
-  };
+    const taskToDelete = tasks.find((t) => t.id === id);
+    if (!taskToDelete) return;
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    goToPage(page);
+    await withOptimisticUpdate(
+      (prev) => getCountsAfterDelete(prev, taskToDelete),
+      () => deleteTask(id),
+      refetchTasksOnly
+    );
   };
 
   if (error) {
@@ -81,7 +73,7 @@ export const TodoPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <TaskHeader counts={counts} onAddClick={handleAddClick} />
+      <TaskHeader counts={localCounts} onAddClick={() => openModal('add')} />
 
       <main className="max-w-6xl mx-auto px-8 py-8">
         <TaskList
@@ -91,8 +83,11 @@ export const TodoPage: React.FC = () => {
           totalPages={totalPages}
           onToggleTask={handleToggleTask}
           onDeleteTask={handleDeleteTask}
-          onEditTask={handleEditTask}
-          onPageChange={handlePageChange}
+          onEditTask={(task: Task) => openModal('edit', task)}
+          onPageChange={(page: number) => {
+            setCurrentPage(page);
+            goToPage(page);
+          }}
           canGoPrevious={canGoPrevious}
           canGoNext={canGoNext}
         />

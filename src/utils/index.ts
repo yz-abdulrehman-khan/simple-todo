@@ -8,3 +8,4 @@ export {
   calculateTaskCounts,
   sortTasksByDate,
 } from './task-helpers';
+export { getPageNumbers } from './pagination';

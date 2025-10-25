@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui';
-import { TaskItem } from '../task-item';
+import { TaskItem } from '../task-item/task-item';
 import type { Task } from '@/types';
 
 interface TaskListProps {

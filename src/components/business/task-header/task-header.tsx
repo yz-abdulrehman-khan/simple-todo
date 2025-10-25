@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui';
-import { TaskStats } from '../task-stats';
+import { TaskStats } from '../task-stats/task-stats';
 import type { TaskCounts } from '@/types';
 
 interface TaskHeaderProps {

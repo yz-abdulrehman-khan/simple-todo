@@ -11,7 +11,7 @@ export interface ModalState {
 export interface TaskModalProps {
   isOpen: boolean;
   mode: ModalMode;
-  taskToEdit?: Task;
+  taskToEdit: Task | null;
   onClose: () => void;
   onSubmit: (text: string) => void | Promise<void>;
 }

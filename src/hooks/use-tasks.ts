@@ -18,6 +18,7 @@ export const useTasks = (paginationParams: PaginationParams): UseTasksReturn => 
     completed: 0,
     deleted: 0,
   });
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 

@@ -1,0 +1,9 @@
+node_modules
+dist
+build
+.storybook
+storybook-static
+coverage
+package-lock.json
+public
+*.html

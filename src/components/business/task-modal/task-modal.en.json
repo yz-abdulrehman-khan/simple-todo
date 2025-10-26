@@ -1,0 +1,15 @@
+{
+  "addTitle": "Add Todo",
+  "editTitle": "Edit Todo",
+  "addDescription": "Create a new todo item. Click save when you are done.",
+  "editDescription": "Edit your todo item. Click save when you are done.",
+  "placeholder": "Enter your task...",
+  "cancel": "Cancel",
+  "save": "Save",
+  "add": "Add",
+  "saving": "Saving...",
+  "taskRequired": "Task text is required",
+  "taskTooLong": "Task text must be less than 500 characters",
+  "invalidInput": "Invalid input",
+  "saveFailed": "Failed to save task"
+}

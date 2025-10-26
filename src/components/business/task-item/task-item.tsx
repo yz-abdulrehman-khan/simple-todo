@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Checkbox } from '@/components/ui';
 import { Pencil, Trash2 } from 'lucide-react';
 import type { Task } from '@/types';
@@ -12,6 +13,7 @@ interface TaskItemProps {
 }
 
 export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, onEdit }) => {
+  const { t } = useTranslation('taskItem');
   const handleDoubleClick = () => {
     if (!task.completed && !task.deleted) {
       onEdit(task);
@@ -44,7 +46,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
           <button
             onClick={() => onEdit(task)}
             className="text-blue-500 hover:text-blue-700 transition-colors"
-            aria-label="Edit task"
+            aria-label={t('edit')}
           >
             <Pencil className="w-5 h-5" />
           </button>
@@ -53,7 +55,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
         <button
           onClick={() => onDelete(task.id)}
           className="text-red-500 hover:text-red-700 transition-colors"
-          aria-label="Delete task"
+          aria-label={t('delete')}
         >
           <Trash2 className="w-5 h-5" />
         </button>

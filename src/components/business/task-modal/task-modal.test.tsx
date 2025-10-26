@@ -3,6 +3,30 @@ import userEvent from '@testing-library/user-event';
 import { TaskModal } from './task-modal';
 import type { Task } from '@/types';
 
+// Mock react-i18next
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        addTitle: 'Add Todo',
+        editTitle: 'Edit Todo',
+        addDescription: 'Create a new todo item. Click save when you are done.',
+        editDescription: 'Edit your todo item. Click save when you are done.',
+        placeholder: 'Enter your task...',
+        cancel: 'Cancel',
+        save: 'Save',
+        add: 'Add',
+        saving: 'Saving...',
+        taskRequired: 'Task text is required',
+        taskTooLong: 'Task text must be less than 500 characters',
+        invalidInput: 'Invalid input',
+        saveFailed: 'Failed to save task',
+      };
+      return translations[key] || key;
+    },
+  }),
+}));
+
 describe('TaskModal', () => {
   const mockOnClose = jest.fn();
   const mockOnSubmit = jest.fn();
@@ -197,7 +221,8 @@ describe('TaskModal', () => {
       await user.click(submitButton);
 
       await waitFor(() => {
-        expect(screen.getByText('Task text is required')).toBeInTheDocument();
+        // Error message is now translated
+        expect(screen.getByText(/task.*required/i)).toBeInTheDocument();
       });
 
       expect(mockOnSubmit).not.toHaveBeenCalled();
@@ -215,7 +240,8 @@ describe('TaskModal', () => {
       await user.click(submitButton);
 
       await waitFor(() => {
-        expect(screen.getByText('Task text is required')).toBeInTheDocument();
+        // Error message is now translated
+        expect(screen.getByText(/task.*required/i)).toBeInTheDocument();
       });
 
       expect(mockOnSubmit).not.toHaveBeenCalled();
@@ -234,7 +260,8 @@ describe('TaskModal', () => {
       await user.click(submitButton);
 
       await waitFor(() => {
-        expect(screen.getByText('Task text must be less than 500 characters')).toBeInTheDocument();
+        // Error message is now translated
+        expect(screen.getByText(/500.*character/i)).toBeInTheDocument();
       });
 
       expect(mockOnSubmit).not.toHaveBeenCalled();
@@ -250,7 +277,7 @@ describe('TaskModal', () => {
       await user.click(submitButton);
 
       await waitFor(() => {
-        expect(screen.getByText('Task text is required')).toBeInTheDocument();
+        expect(screen.getByText(/task.*required/i)).toBeInTheDocument();
       });
 
       // Type valid input
@@ -261,7 +288,7 @@ describe('TaskModal', () => {
       await user.click(submitButton);
 
       await waitFor(() => {
-        expect(screen.queryByText('Task text is required')).not.toBeInTheDocument();
+        expect(screen.queryByText(/task.*required/i)).not.toBeInTheDocument();
       });
     });
   });

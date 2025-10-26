@@ -121,14 +121,398 @@
     {
       "text": "new task",
       "completed": false,
-      "deleted": false,
+      "deleted": true,
       "createdAt": "2025-10-26T01:01:33.231Z",
       "id": 18
+    },
+    {
+      "text": "bew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:03:34.564Z",
+      "id": 19
+    },
+    {
+      "text": "bew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:03:38.797Z",
+      "id": 20
+    },
+    {
+      "text": "bew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:03:40.987Z",
+      "id": 21
+    },
+    {
+      "text": "bew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:03:43.097Z",
+      "id": 22
+    },
+    {
+      "text": "bew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:03:45.480Z",
+      "id": 23
+    },
+    {
+      "text": "bew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:03:48.529Z",
+      "id": 24
+    },
+    {
+      "text": "bew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:03:51.484Z",
+      "id": 25
+    },
+    {
+      "text": "bew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:03:53.843Z",
+      "id": 26
+    },
+    {
+      "text": "bew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:03:56.178Z",
+      "id": 27
+    },
+    {
+      "text": "bew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:03:58.864Z",
+      "id": 28
+    },
+    {
+      "text": "new items",
+      "completed": true,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:09:36.802Z",
+      "id": 29
+    },
+    {
+      "text": "new items 2",
+      "completed": true,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:09:46.549Z",
+      "id": 30
+    },
+    {
+      "text": "new items 3",
+      "completed": true,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:09:54.395Z",
+      "id": 31
+    },
+    {
+      "text": "ewb",
+      "completed": true,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:10:19.330Z",
+      "id": 32
+    },
+    {
+      "text": "ewb",
+      "completed": true,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:10:21.638Z",
+      "id": 33
+    },
+    {
+      "text": "ewb",
+      "completed": true,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:10:24.151Z",
+      "id": 34
+    },
+    {
+      "text": "ewb",
+      "completed": true,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:10:27.086Z",
+      "id": 35
+    },
+    {
+      "text": "ewb",
+      "completed": true,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:10:29.744Z",
+      "id": 36
+    },
+    {
+      "text": "ewb",
+      "completed": true,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:10:32.402Z",
+      "id": 37
+    },
+    {
+      "text": "ewb",
+      "completed": true,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:10:34.989Z",
+      "id": 38
+    },
+    {
+      "text": "ewb",
+      "completed": true,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:10:37.863Z",
+      "id": 39
+    },
+    {
+      "text": "ewb",
+      "completed": true,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:10:41.552Z",
+      "id": 40
+    },
+    {
+      "text": "bew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:32:11.024Z",
+      "id": 41
+    },
+    {
+      "text": "bew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:32:14.208Z",
+      "id": 42
+    },
+    {
+      "text": "bnew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:32:16.900Z",
+      "id": 43
+    },
+    {
+      "text": "bew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:32:19.618Z",
+      "id": 44
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:32:22.188Z",
+      "id": 45
+    },
+    {
+      "text": "new",
+      "completed": true,
+      "deleted": false,
+      "createdAt": "2025-10-26T01:32:26.025Z",
+      "id": 46
+    },
+    {
+      "text": "new",
+      "completed": true,
+      "deleted": false,
+      "createdAt": "2025-10-26T01:32:28.598Z",
+      "id": 47
+    },
+    {
+      "text": "bew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:32:53.800Z",
+      "id": 48
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:33:25.208Z",
+      "id": 49
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:34:43.949Z",
+      "id": 50
+    },
+    {
+      "text": "ew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:35:46.328Z",
+      "id": 51
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:36:28.120Z",
+      "id": 52
+    },
+    {
+      "text": "bew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:36:39.321Z",
+      "id": 53
+    },
+    {
+      "text": "new",
+      "completed": true,
+      "deleted": false,
+      "createdAt": "2025-10-26T01:37:33.641Z",
+      "id": 54
+    },
+    {
+      "text": "new",
+      "completed": true,
+      "deleted": false,
+      "createdAt": "2025-10-26T01:37:38.731Z",
+      "id": 55
+    },
+    {
+      "text": "ww",
+      "completed": true,
+      "deleted": false,
+      "createdAt": "2025-10-26T01:39:24.657Z",
+      "id": 56
+    },
+    {
+      "text": "ww",
+      "completed": true,
+      "deleted": false,
+      "createdAt": "2025-10-26T01:39:27.851Z",
+      "id": 57
+    },
+    {
+      "text": "ww",
+      "completed": true,
+      "deleted": false,
+      "createdAt": "2025-10-26T01:39:31.635Z",
+      "id": 58
+    },
+    {
+      "text": "ww",
+      "completed": true,
+      "deleted": false,
+      "createdAt": "2025-10-26T01:39:34.942Z",
+      "id": 59
+    },
+    {
+      "text": "ww",
+      "completed": true,
+      "deleted": false,
+      "createdAt": "2025-10-26T01:39:37.460Z",
+      "id": 60
+    },
+    {
+      "text": "ww",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:39:39.841Z",
+      "id": 61
+    },
+    {
+      "text": "ww",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:39:42.866Z",
+      "id": 62
+    },
+    {
+      "text": "ww",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:39:45.800Z",
+      "id": 63
+    },
+    {
+      "text": "ew",
+      "completed": true,
+      "deleted": false,
+      "createdAt": "2025-10-26T01:40:32.936Z",
+      "id": 64
+    },
+    {
+      "text": "ew",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:40:35.644Z",
+      "id": 65
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:44:47.936Z",
+      "id": 66
+    },
+    {
+      "text": "newwwww",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:44:57.276Z",
+      "id": 67
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:45:05.451Z",
+      "id": 68
+    },
+    {
+      "text": "fatah",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:47:07.115Z",
+      "id": 69
+    },
+    {
+      "text": "ewb 2",
+      "completed": false,
+      "deleted": true,
+      "id": 70
+    },
+    {
+      "text": "one to one",
+      "completed": true,
+      "deleted": true,
+      "createdAt": "2025-10-26T01:59:13.386Z",
+      "id": 71
+    },
+    {
+      "text": "new onw",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T02:01:28.017Z",
+      "id": 72
+    },
+    {
+      "text": "new",
+      "completed": true,
+      "deleted": false,
+      "createdAt": "2025-10-26T02:42:37.238Z",
+      "id": 73
     }
   ],
   "counts": {
-    "uncompleted": 1,
-    "completed": 0,
-    "deleted": 17
+    "uncompleted": 0,
+    "completed": 11,
+    "deleted": 62
   }
 }

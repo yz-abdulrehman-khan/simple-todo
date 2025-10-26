@@ -1,11 +1,147 @@
+import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { TodoPage } from './todo-page';
 import { useTasks, useTaskMutations, useModal } from '@/hooks';
-import type { Task } from '@/types';
+import type { Task, TaskCounts } from '@/types';
 
 // Mock all hooks
 jest.mock('@/hooks');
+
+// Mock react-i18next
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        error: 'Error',
+      };
+      return translations[key] || key;
+    },
+    i18n: {
+      language: 'en',
+    },
+  }),
+}));
+
+// Define mock component prop types
+interface TaskHeaderProps {
+  counts: TaskCounts;
+  onAddClick: () => void;
+}
+
+interface TaskListProps {
+  tasks: Task[];
+  onPageChange: (page: number) => void;
+  onToggleTask: (id: number, completed: boolean) => void;
+  onDeleteTask: (id: number) => void;
+  onEditTask: (task: Task) => void;
+  isLoading: boolean;
+  currentPage: number;
+  totalPages: number;
+}
+
+interface TaskModalProps {
+  isOpen: boolean;
+  mode: 'add' | 'edit';
+  onClose: () => void;
+  onSubmit: (text: string) => void;
+  taskToEdit: Task | null;
+}
+
+// Mock child components that use i18n
+jest.mock('@/components/business', () => ({
+  TaskHeader: ({ counts, onAddClick }: TaskHeaderProps) => (
+    <div>
+      <h1>The Todo</h1>
+      <div>
+        <span>{counts.uncompleted}</span>
+        <span>{counts.completed}</span>
+        <span>{counts.deleted}</span>
+      </div>
+      <button onClick={onAddClick}>Add Todo</button>
+    </div>
+  ),
+  TaskList: ({
+    tasks,
+    onPageChange,
+    onToggleTask,
+    onDeleteTask,
+    onEditTask,
+    isLoading,
+    currentPage,
+    totalPages,
+  }: TaskListProps) => (
+    <div>
+      {isLoading ? (
+        <div>Loading tasks...</div>
+      ) : (
+        <>
+          {tasks.map((task: Task) => (
+            <div key={task.id} className="group" onDoubleClick={() => onEditTask(task)}>
+              <span>{task.text}</span>
+              <input
+                type="checkbox"
+                role="checkbox"
+                checked={task.completed}
+                onChange={() => onToggleTask(task.id, !task.completed)}
+              />
+              <button aria-label="Delete task" onClick={() => onDeleteTask(task.id)}>
+                Delete
+              </button>
+              <button aria-label="Edit task" onClick={() => onEditTask(task)}>
+                Edit
+              </button>
+            </div>
+          ))}
+          {totalPages > 1 && (
+            <div>
+              <button onClick={() => onPageChange(currentPage - 1)}>Previous</button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => onPageChange(page)}
+                  aria-label={`Go to page ${page}`}
+                >
+                  {page}
+                </button>
+              ))}
+              <button onClick={() => onPageChange(currentPage + 1)}>Next</button>
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  ),
+  TaskModal: ({ isOpen, mode, onClose, onSubmit, taskToEdit }: TaskModalProps) => {
+    if (!isOpen) return null;
+
+    let textValue = taskToEdit?.text || '';
+
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      textValue = e.target.value;
+    };
+
+    const handleSubmit = () => {
+      const textarea = document.querySelector('textarea');
+      onSubmit(textarea?.value || textValue);
+    };
+
+    return (
+      <div>
+        <h2>{mode === 'add' ? 'Add Todo' : 'Edit Todo'}</h2>
+        <textarea
+          placeholder="Enter your task..."
+          defaultValue={textValue}
+          onChange={handleChange}
+        />
+        <button onClick={onClose}>Cancel</button>
+        <button onClick={handleSubmit} role="button" name={mode === 'add' ? 'Add' : 'Save'}>
+          {mode === 'add' ? 'Add' : 'Save'}
+        </button>
+      </div>
+    );
+  },
+}));
 
 const mockUseTasks = useTasks as jest.Mock;
 const mockUseTaskMutations = useTaskMutations as jest.Mock;
@@ -129,7 +265,7 @@ describe('TodoPage', () => {
 
     render(<TodoPage />);
 
-    const page2Button = screen.getByRole('button', { name: '2' });
+    const page2Button = screen.getByRole('button', { name: /go to page 2/i });
     await user.click(page2Button);
 
     // Page change is handled internally via setCurrentPage

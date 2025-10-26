@@ -3,6 +3,19 @@ import userEvent from '@testing-library/user-event';
 import { TaskItem } from './task-item';
 import type { Task } from '@/types';
 
+// Mock react-i18next
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        edit: 'Edit task',
+        delete: 'Delete task',
+      };
+      return translations[key] || key;
+    },
+  }),
+}));
+
 describe('TaskItem', () => {
   const mockTask: Task = {
     id: 1,

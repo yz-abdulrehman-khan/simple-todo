@@ -1,8 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { TaskItem } from '../task-item/task-item';
-import { cn, getPageNumbers } from '@/utils';
+import { cn, getPageNumbers, formatNumber } from '@/utils';
 import type { Task } from '@/types';
 
 interface TaskListProps {
@@ -30,10 +31,15 @@ export const TaskList: React.FC<TaskListProps> = ({
   canGoPrevious,
   canGoNext,
 }) => {
+  const { t, i18n } = useTranslation('taskList');
+  const isRTL = i18n.language === 'ar';
+  const PreviousIcon = isRTL ? ChevronRight : ChevronLeft;
+  const NextIcon = isRTL ? ChevronLeft : ChevronRight;
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="text-gray-500">Loading tasks...</div>
+        <div className="text-gray-500">{t('loading')}</div>
       </div>
     );
   }
@@ -41,7 +47,7 @@ export const TaskList: React.FC<TaskListProps> = ({
   if (tasks.length === 0) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="text-gray-500">No tasks found. Create one to get started!</div>
+        <div className="text-gray-500">{t('empty')}</div>
       </div>
     );
   }
@@ -69,8 +75,9 @@ export const TaskList: React.FC<TaskListProps> = ({
             size="sm"
             onClick={() => onPageChange(currentPage - 1)}
             disabled={!canGoPrevious}
+            aria-label={t('previousPage')}
           >
-            <ChevronLeft className="w-4 h-4" />
+            <PreviousIcon className="w-4 h-4" />
           </Button>
 
           {pageNumbers.map((page, index) =>
@@ -84,13 +91,14 @@ export const TaskList: React.FC<TaskListProps> = ({
                 variant="outline"
                 size="sm"
                 onClick={() => onPageChange(page as number)}
+                aria-label={t('goToPage', { page })}
                 className={cn(
                   'min-w-[40px]',
                   currentPage === page &&
                     'border-purple-600 text-purple-600 bg-purple-50 hover:bg-purple-100'
                 )}
               >
-                {page}
+                {formatNumber(page as number, i18n.language)}
               </Button>
             )
           )}
@@ -100,8 +108,9 @@ export const TaskList: React.FC<TaskListProps> = ({
             size="sm"
             onClick={() => onPageChange(currentPage + 1)}
             disabled={!canGoNext}
+            aria-label={t('nextPage')}
           >
-            <ChevronRight className="w-4 h-4" />
+            <NextIcon className="w-4 h-4" />
           </Button>
         </div>
       )}

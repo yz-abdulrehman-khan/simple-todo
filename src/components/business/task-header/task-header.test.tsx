@@ -3,6 +3,23 @@ import userEvent from '@testing-library/user-event';
 import { TaskHeader } from './task-header';
 import type { TaskCounts } from '@/types';
 
+// Mock react-i18next
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        title: 'The Todo',
+        addTodo: 'Add Todo',
+      };
+      return translations[key] || key;
+    },
+    i18n: {
+      language: 'en',
+      changeLanguage: jest.fn(),
+    },
+  }),
+}));
+
 describe('TaskHeader', () => {
   const mockCounts: TaskCounts = {
     uncompleted: 5,

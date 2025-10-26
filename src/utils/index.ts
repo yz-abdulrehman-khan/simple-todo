@@ -9,3 +9,4 @@ export {
   sortTasksByDate,
 } from './task-helpers';
 export { getPageNumbers } from './pagination';
+export { toArabicNumerals, formatNumber } from './number-formatter';

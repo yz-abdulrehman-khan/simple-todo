@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { TaskHeader, TaskList, TaskModal } from '@/components/business';
 import { useTasks, useTaskMutations, useModal } from '@/hooks';
 import { PAGINATION_CONFIG } from '@/configs';
 import type { Task } from '@/types';
 
 export const TodoPage: React.FC = () => {
+  const { t } = useTranslation('todoPage');
   const [currentPage, setCurrentPage] = useState<number>(PAGINATION_CONFIG.defaultPage);
 
   const { tasks, counts, isLoading, error, refetchTasksOnly } = useTasks({
@@ -54,7 +56,9 @@ export const TodoPage: React.FC = () => {
   if (error) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-red-500">Error: {error}</div>
+        <div className="text-red-500">
+          {t('error')}: {error}
+        </div>
       </div>
     );
   }

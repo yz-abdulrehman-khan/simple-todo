@@ -47,8 +47,12 @@ export const useTasks = (paginationParams: PaginationParams): UseTasksReturn => 
   const fetchTasksOnly = useCallback(async () => {
     setError(null);
     try {
-      const tasksData = await taskService.getTasks({ page, limit });
+      const [tasksData, countsData] = await Promise.all([
+        taskService.getTasks({ page, limit }),
+        taskService.getCounts(),
+      ]);
       setTasks(tasksData);
+      setCounts(countsData);
     } catch (err) {
       setError(getErrorMessage(err));
     }

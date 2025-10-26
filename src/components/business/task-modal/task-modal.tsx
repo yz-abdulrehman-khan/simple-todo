@@ -84,10 +84,20 @@ export const TaskModal: React.FC<TaskModalProps> = ({
           </div>
 
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={handleCancel} disabled={isSubmitting}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleCancel}
+              disabled={isSubmitting}
+              className="border-gray-300 hover:bg-gray-50"
+            >
               Cancel
             </Button>
-            <Button type="submit" disabled={isSubmitting}>
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="bg-gray-900 text-white hover:bg-gray-800"
+            >
               {isSubmitting ? 'Saving...' : mode === 'add' ? 'Add' : 'Save'}
             </Button>
           </DialogFooter>

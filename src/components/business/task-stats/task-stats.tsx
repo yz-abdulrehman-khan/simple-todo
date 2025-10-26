@@ -9,13 +9,25 @@ interface TaskStatsProps {
 export const TaskStats: React.FC<TaskStatsProps> = ({ counts }) => {
   return (
     <div className="flex items-center gap-2">
-      <Badge variant="secondary" className="bg-purple-600 text-white hover:bg-purple-700">
+      <Badge
+        variant="secondary"
+        className="bg-purple-600 text-white hover:bg-purple-700 cursor-help"
+        title="Uncompleted tasks"
+      >
         {counts.uncompleted}
       </Badge>
-      <Badge variant="secondary" className="bg-red-500 text-white hover:bg-red-600">
+      <Badge
+        variant="secondary"
+        className="bg-red-500 text-white hover:bg-red-600 cursor-help"
+        title="Deleted tasks"
+      >
         {counts.deleted}
       </Badge>
-      <Badge variant="secondary" className="bg-green-500 text-white hover:bg-green-600">
+      <Badge
+        variant="secondary"
+        className="bg-green-500 text-white hover:bg-green-600 cursor-help"
+        title="Completed tasks"
+      >
         {counts.completed}
       </Badge>
     </div>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TaskHeader, TaskList, TaskModal } from '@/components/business';
-import { useTasks, useTaskMutations, usePagination, useModal, useOptimisticCounts } from '@/hooks';
-import { getCountsAfterAdd, getCountsAfterToggle, getCountsAfterDelete } from '@/helpers';
+import { useTasks, useTaskMutations, useModal } from '@/hooks';
 import { PAGINATION_CONFIG } from '@/configs';
 import type { Task } from '@/types';
 
@@ -15,15 +14,9 @@ export const TodoPage: React.FC = () => {
 
   const { createTask, updateTask, toggleTaskCompletion, deleteTask } = useTaskMutations();
   const { isOpen, mode, taskToEdit, openModal, closeModal } = useModal();
-  const { localCounts, withOptimisticUpdate } = useOptimisticCounts(counts);
 
-  const totalNonDeletedTasks = localCounts.uncompleted + localCounts.completed;
-
-  const { totalPages, goToPage, canGoPrevious, canGoNext } = usePagination({
-    totalItems: totalNonDeletedTasks,
-    initialPage: currentPage,
-    itemsPerPage: PAGINATION_CONFIG.defaultLimit,
-  });
+  const totalNonDeletedTasks = counts.uncompleted + counts.completed;
+  const totalPages = Math.max(1, Math.ceil(totalNonDeletedTasks / PAGINATION_CONFIG.defaultLimit));
 
   useEffect(() => {
     if (currentPage > totalPages && totalPages > 0) {
@@ -31,36 +24,31 @@ export const TodoPage: React.FC = () => {
     }
   }, [currentPage, totalPages]);
 
+  const canGoPrevious = currentPage > 1;
+  const canGoNext = currentPage < totalPages;
+
   const handleModalSubmit = async (text: string) => {
     if (mode === 'add') {
-      await withOptimisticUpdate(getCountsAfterAdd, () => createTask({ text }), refetchTasksOnly);
+      await createTask({ text });
+      await refetchTasksOnly();
     } else if (mode === 'edit' && taskToEdit) {
-      const result = await updateTask(taskToEdit.id, {
+      await updateTask(taskToEdit.id, {
         text,
         completed: taskToEdit.completed,
         deleted: taskToEdit.deleted,
       });
-      if (result) await refetchTasksOnly();
+      await refetchTasksOnly();
     }
   };
 
   const handleToggleTask = async (id: number, completed: boolean) => {
-    await withOptimisticUpdate(
-      (prev) => getCountsAfterToggle(prev, completed),
-      () => toggleTaskCompletion(id, completed),
-      refetchTasksOnly
-    );
+    await toggleTaskCompletion(id, completed);
+    await refetchTasksOnly();
   };
 
   const handleDeleteTask = async (id: number) => {
-    const taskToDelete = tasks.find((t) => t.id === id);
-    if (!taskToDelete) return;
-
-    await withOptimisticUpdate(
-      (prev) => getCountsAfterDelete(prev, taskToDelete),
-      () => deleteTask(id),
-      refetchTasksOnly
-    );
+    await deleteTask(id);
+    await refetchTasksOnly();
   };
 
   if (error) {
@@ -73,7 +61,7 @@ export const TodoPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <TaskHeader counts={localCounts} onAddClick={() => openModal('add')} />
+      <TaskHeader counts={counts} onAddClick={() => openModal('add')} />
 
       <main className="max-w-6xl mx-auto px-8 py-8">
         <TaskList
@@ -84,10 +72,7 @@ export const TodoPage: React.FC = () => {
           onToggleTask={handleToggleTask}
           onDeleteTask={handleDeleteTask}
           onEditTask={(task: Task) => openModal('edit', task)}
-          onPageChange={(page: number) => {
-            setCurrentPage(page);
-            goToPage(page);
-          }}
+          onPageChange={setCurrentPage}
           canGoPrevious={canGoPrevious}
           canGoNext={canGoNext}
         />

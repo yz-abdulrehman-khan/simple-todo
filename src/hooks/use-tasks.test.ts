@@ -171,7 +171,7 @@ describe('useTasks', () => {
     expect(result.current.counts).toEqual(newCounts);
   });
 
-  it('should refetch only tasks when refetchTasksOnly is called', async () => {
+  it('should refetch tasks and counts when refetchTasksOnly is called', async () => {
     mockTaskService.getTasks.mockResolvedValue(mockTasks);
     mockTaskService.getCounts.mockResolvedValue(mockCounts);
 
@@ -192,17 +192,19 @@ describe('useTasks', () => {
         createdAt: '2024-01-04T10:00:00Z',
       },
     ];
+    const newCounts = { uncompleted: 1, completed: 0, deleted: 0 };
 
     mockTaskService.getTasks.mockResolvedValue(newTasks);
+    mockTaskService.getCounts.mockResolvedValue(newCounts);
 
     await act(async () => {
       await result.current.refetchTasksOnly();
     });
 
     expect(mockTaskService.getTasks).toHaveBeenCalledWith({ page: 1, limit: 10 });
-    expect(mockTaskService.getCounts).not.toHaveBeenCalled();
+    expect(mockTaskService.getCounts).toHaveBeenCalled();
     expect(result.current.tasks).toEqual(newTasks);
-    expect(result.current.counts).toEqual(mockCounts); // Counts should not change
+    expect(result.current.counts).toEqual(newCounts);
   });
 
   it('should handle errors during refetchTasksOnly', async () => {

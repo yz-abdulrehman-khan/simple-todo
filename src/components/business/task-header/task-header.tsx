@@ -22,7 +22,7 @@ export const TaskHeader: React.FC<TaskHeaderProps> = ({ counts, onAddClick }) =>
 
         <div className="flex items-center gap-4">
           <TaskStats counts={counts} />
-          <Button onClick={onAddClick} className="gap-2">
+          <Button onClick={onAddClick} className="gap-2 bg-gray-900 text-white hover:bg-gray-800">
             <Plus className="w-4 h-4" />
             Add Todo
           </Button>

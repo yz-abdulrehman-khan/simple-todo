@@ -50,7 +50,7 @@ export const TaskList: React.FC<TaskListProps> = ({
 
   return (
     <div className="w-full">
-      <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+      <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden min-h-[572px]">
         {tasks.map((task) => (
           <TaskItem
             key={task.id}

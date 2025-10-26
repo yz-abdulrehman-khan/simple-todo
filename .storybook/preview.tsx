@@ -12,6 +12,7 @@ const preview: Preview = {
       },
     },
   },
+  // Wrap all stories with i18n provider so components can use translations
   decorators: [
     (Story) => (
       <I18nextProvider i18n={i18n}>

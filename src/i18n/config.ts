@@ -1,3 +1,4 @@
+// Collocated translations - each component keeps its translations next to its code instead of a centralized locale folder
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -45,7 +46,7 @@ const resources = {
 };
 
 i18n
-  .use(LanguageDetector)
+  .use(LanguageDetector) // Auto-detect from localStorage or browser settings
   .use(initReactI18next)
   .init({
     resources,
@@ -55,8 +56,8 @@ i18n
       escapeValue: false,
     },
     detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage'],
+      order: ['localStorage', 'navigator'], // Check localStorage first, then browser language
+      caches: ['localStorage'], // Remember user's choice
     },
   });
 

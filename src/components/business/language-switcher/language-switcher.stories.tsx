@@ -27,6 +27,7 @@ export const Default: Story = {
   },
 };
 
+// Wrapper needed to force language state since Storybook doesn't auto-detect language
 const InEnglishWrapper = () => {
   const { i18n } = useTranslation();
 

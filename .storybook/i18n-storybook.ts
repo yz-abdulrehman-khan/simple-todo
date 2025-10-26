@@ -1,3 +1,4 @@
+// Dedicated i18n config for Storybook - can't reuse the app config because it includes browser language detection which interferes with story controls
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
@@ -45,14 +46,14 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: 'en',
+  lng: 'en', // Fixed language instead of auto-detect
   fallbackLng: 'en',
   defaultNS: 'taskHeader',
   interpolation: {
     escapeValue: false,
   },
   react: {
-    useSuspense: false,
+    useSuspense: false, // Prevents React Suspense from blocking story rendering
   },
 });
 

@@ -10,9 +10,11 @@ export const LanguageSwitcher: React.FC = () => {
     const newLang = i18n.language === 'en' ? 'ar' : 'en';
     i18n.changeLanguage(newLang);
     document.documentElement.lang = newLang;
+    // Update text direction for RTL languages
     document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
   };
 
+  // Show what language you'll switch TO, not the current one
   const nextLanguageLabel = i18n.language === 'en' ? t('arabic') : t('english');
 
   return (

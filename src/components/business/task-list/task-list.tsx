@@ -33,6 +33,7 @@ export const TaskList: React.FC<TaskListProps> = ({
 }) => {
   const { t, i18n } = useTranslation('taskList');
   const isRTL = i18n.language === 'ar';
+  // Swap chevron direction for RTL - in Arabic, previous means right and next means left
   const PreviousIcon = isRTL ? ChevronRight : ChevronLeft;
   const NextIcon = isRTL ? ChevronLeft : ChevronRight;
 

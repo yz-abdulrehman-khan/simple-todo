@@ -33,7 +33,7 @@ describe('handleApiError', () => {
     const result = handleApiError(mockResponse);
 
     expect(result).toEqual({
-      message: 'An error occurred',
+      message: 'HTTP 500',
       status: 500,
       statusText: '',
     });
@@ -83,7 +83,7 @@ describe('handleApiError', () => {
     expect(result).toEqual({
       message: 'Type error occurred',
       status: 0,
-      statusText: 'Error',
+      statusText: 'TypeError',
     });
   });
 
@@ -93,7 +93,7 @@ describe('handleApiError', () => {
     expect(result).toEqual({
       message: 'An unexpected error occurred',
       status: 0,
-      statusText: 'Unknown Error',
+      statusText: 'Unknown',
     });
   });
 
@@ -103,7 +103,7 @@ describe('handleApiError', () => {
     expect(result).toEqual({
       message: 'An unexpected error occurred',
       status: 0,
-      statusText: 'Unknown Error',
+      statusText: 'Unknown',
     });
   });
 
@@ -113,7 +113,7 @@ describe('handleApiError', () => {
     expect(result).toEqual({
       message: 'An unexpected error occurred',
       status: 0,
-      statusText: 'Unknown Error',
+      statusText: 'Unknown',
     });
   });
 
@@ -123,7 +123,7 @@ describe('handleApiError', () => {
     expect(result).toEqual({
       message: 'An unexpected error occurred',
       status: 0,
-      statusText: 'Unknown Error',
+      statusText: 'Unknown',
     });
   });
 
@@ -133,7 +133,7 @@ describe('handleApiError', () => {
     expect(result).toEqual({
       message: 'An unexpected error occurred',
       status: 0,
-      statusText: 'Unknown Error',
+      statusText: 'Unknown',
     });
   });
 });
@@ -172,7 +172,7 @@ describe('getErrorMessage', () => {
 
     const result = getErrorMessage(mockResponse);
 
-    expect(result).toBe('An error occurred');
+    expect(result).toBe('HTTP 500');
   });
 });
 

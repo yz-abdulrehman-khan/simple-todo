@@ -13,7 +13,9 @@ jest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => {
       const translations: Record<string, string> = {
-        error: 'Error',
+        error: 'Failed to load tasks',
+        errorDetails: 'An unexpected error occurred',
+        retry: 'Retry',
       };
       return translations[key] || key;
     },
@@ -234,7 +236,9 @@ describe('TodoPage', () => {
 
     render(<TodoPage />);
 
-    expect(screen.getByText('Error: Failed to fetch tasks')).toBeInTheDocument();
+    expect(screen.getByText('Failed to load tasks')).toBeInTheDocument();
+    expect(screen.getByText('An unexpected error occurred')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /retry/i })).toBeInTheDocument();
   });
 
   it('should open add modal when add button is clicked', async () => {

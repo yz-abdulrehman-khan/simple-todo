@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { AlertTriangle } from 'lucide-react';
 import { TaskHeader, TaskList, TaskModal } from '@/components/business';
 import { useTasks, useTaskMutations, useModal } from '@/hooks';
 import { PAGINATION_CONFIG } from '@/configs';
@@ -54,33 +55,43 @@ export const TodoPage: React.FC = () => {
     await refetchTasksOnly();
   };
 
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-red-500">
-          {t('error')}: {error}
-        </div>
-      </div>
-    );
-  }
+  const handleRetry = () => {
+    refetchTasksOnly();
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
       <TaskHeader counts={counts} onAddClick={() => openModal(MODAL_MODE.ADD)} />
 
       <main className="max-w-6xl mx-auto px-8 py-8">
-        <TaskList
-          tasks={tasks}
-          isLoading={isLoading}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onToggleTask={handleToggleTask}
-          onDeleteTask={handleDeleteTask}
-          onEditTask={(task: Task) => openModal(MODAL_MODE.EDIT, task)}
-          onPageChange={setCurrentPage}
-          canGoPrevious={canGoPrevious}
-          canGoNext={canGoNext}
-        />
+        {error ? (
+          <div className="bg-white rounded-lg shadow-sm p-8 text-center">
+            <div className="text-red-500 mb-4">
+              <AlertTriangle className="w-12 h-12 mx-auto mb-3" />
+              <p className="text-lg font-medium">{t('error')}</p>
+              <p className="text-sm text-gray-600 mt-2">{t('errorDetails')}</p>
+            </div>
+            <button
+              onClick={handleRetry}
+              className="px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
+            >
+              {t('retry')}
+            </button>
+          </div>
+        ) : (
+          <TaskList
+            tasks={tasks}
+            isLoading={isLoading}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onToggleTask={handleToggleTask}
+            onDeleteTask={handleDeleteTask}
+            onEditTask={(task: Task) => openModal(MODAL_MODE.EDIT, task)}
+            onPageChange={setCurrentPage}
+            canGoPrevious={canGoPrevious}
+            canGoNext={canGoNext}
+          />
+        )}
       </main>
 
       <TaskModal

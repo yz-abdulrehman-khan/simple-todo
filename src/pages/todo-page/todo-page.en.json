@@ -1,3 +1,5 @@
 {
-  "error": "Error"
+  "error": "Failed to load tasks",
+  "errorDetails": "An unexpected error occurred",
+  "retry": "Retry"
 }

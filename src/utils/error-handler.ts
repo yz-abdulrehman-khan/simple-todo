@@ -3,7 +3,7 @@ import type { ApiError } from '@/types';
 export const handleApiError = (error: unknown): ApiError => {
   if (error instanceof Response) {
     return {
-      message: error.statusText || 'An error occurred',
+      message: error.statusText || `HTTP ${error.status}`,
       status: error.status,
       statusText: error.statusText,
     };
@@ -13,14 +13,14 @@ export const handleApiError = (error: unknown): ApiError => {
     return {
       message: error.message,
       status: 0,
-      statusText: 'Error',
+      statusText: error.name || 'Error',
     };
   }
 
   return {
     message: 'An unexpected error occurred',
     status: 0,
-    statusText: 'Unknown Error',
+    statusText: 'Unknown',
   };
 };
 

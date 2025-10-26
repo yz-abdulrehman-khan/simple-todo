@@ -1,2 +1,2 @@
 export { httpClient } from './http-client';
-export { taskService } from './api';
+export { taskService } from './api/task-service';

@@ -79,26 +79,27 @@ export const TaskList: React.FC<TaskListProps> = ({
             </svg>
           </Button>
 
-          {pageNumbers.map((page, index) => (
-            <React.Fragment key={index}>
-              {page === '...' ? (
-                <span className="px-2 text-gray-500">...</span>
-              ) : (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => onPageChange(page as number)}
-                  className={cn(
-                    'min-w-[40px]',
-                    currentPage === page &&
-                      'border-purple-600 text-purple-600 bg-purple-50 hover:bg-purple-100'
-                  )}
-                >
-                  {page}
-                </Button>
-              )}
-            </React.Fragment>
-          ))}
+          {pageNumbers.map((page, index) =>
+            page === '...' ? (
+              <span key={index} className="px-2 text-gray-500">
+                ...
+              </span>
+            ) : (
+              <Button
+                key={index}
+                variant="outline"
+                size="sm"
+                onClick={() => onPageChange(page as number)}
+                className={cn(
+                  'min-w-[40px]',
+                  currentPage === page &&
+                    'border-purple-600 text-purple-600 bg-purple-50 hover:bg-purple-100'
+                )}
+              >
+                {page}
+              </Button>
+            )
+          )}
 
           <Button
             variant="outline"

@@ -28,6 +28,8 @@ export default {
     '!src/**/*.stories.tsx',
     '!src/main.tsx',
     '!src/vite-env.d.ts',
+    '!src/**/index.ts', // Exclude barrel exports
+    '!src/**/index.tsx',
   ],
   coverageThreshold: {
     global: {

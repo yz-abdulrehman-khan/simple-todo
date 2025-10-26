@@ -148,6 +148,7 @@ describe('TaskModal', () => {
 
       await waitFor(() => {
         expect(mockOnSubmit).toHaveBeenCalledWith('New task');
+        expect(mockOnClose).toHaveBeenCalled();
       });
     });
 
@@ -163,6 +164,7 @@ describe('TaskModal', () => {
       await user.click(submitButton);
 
       await waitFor(() => {
+        expect(mockOnSubmit).toHaveBeenCalled();
         expect(mockOnClose).toHaveBeenCalled();
       });
     });
@@ -180,6 +182,7 @@ describe('TaskModal', () => {
 
       await waitFor(() => {
         expect(mockOnSubmit).toHaveBeenCalledWith('Trimmed task');
+        expect(mockOnClose).toHaveBeenCalled();
       });
     });
   });
@@ -284,7 +287,11 @@ describe('TaskModal', () => {
         expect(screen.getByRole('button', { name: 'Saving...' })).toBeInTheDocument();
       });
 
+      // Resolve the promise and wait for state updates to complete
       resolveSubmit!();
+      await waitFor(() => {
+        expect(mockOnClose).toHaveBeenCalled();
+      });
     });
 
     it('should disable submit button while submitting', async () => {
@@ -308,7 +315,11 @@ describe('TaskModal', () => {
         expect(savingButton).toBeDisabled();
       });
 
+      // Resolve the promise and wait for state updates to complete
       resolveSubmit!();
+      await waitFor(() => {
+        expect(mockOnClose).toHaveBeenCalled();
+      });
     });
 
     it('should disable cancel button while submitting', async () => {
@@ -332,7 +343,11 @@ describe('TaskModal', () => {
         expect(cancelButton).toBeDisabled();
       });
 
+      // Resolve the promise and wait for state updates to complete
       resolveSubmit!();
+      await waitFor(() => {
+        expect(mockOnClose).toHaveBeenCalled();
+      });
     });
   });
 

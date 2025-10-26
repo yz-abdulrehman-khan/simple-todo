@@ -61,4 +61,9 @@ i18n
     },
   });
 
+// Set initial direction based on detected language
+const currentLanguage = i18n.language;
+document.documentElement.lang = currentLanguage;
+document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+
 export default i18n;

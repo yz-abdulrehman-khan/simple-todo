@@ -8,23 +8,127 @@
       "createdAt": "2025-02-03T12:00:00Z"
     },
     {
-      "id": 2,
-      "text": "Complete the React project",
-      "completed": false,
-      "deleted": false,
-      "createdAt": "2025-02-03T13:00:00Z"
+      "text": "Complete the React project news",
+      "completed": true,
+      "deleted": true,
+      "id": 2
     },
     {
       "id": 3,
       "text": "Read a book",
       "completed": true,
-      "deleted": false,
+      "deleted": true,
       "createdAt": "2025-02-03T14:00:00Z"
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-25T23:37:00.548Z",
+      "id": 4
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-25T23:37:04.109Z",
+      "id": 5
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-25T23:37:07.903Z",
+      "id": 6
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-25T23:37:11.090Z",
+      "id": 7
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-25T23:37:14.252Z",
+      "id": 8
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-25T23:37:17.390Z",
+      "id": 9
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-25T23:37:20.959Z",
+      "id": 10
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-25T23:37:25.603Z",
+      "id": 11
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-25T23:37:29.520Z",
+      "id": 12
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-25T23:37:32.628Z",
+      "id": 13
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-25T23:37:35.914Z",
+      "id": 14
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-25T23:37:44.295Z",
+      "id": 15
+    },
+    {
+      "text": "new",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-25T23:37:47.661Z",
+      "id": 16
+    },
+    {
+      "text": "=",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T00:34:46.165Z",
+      "id": 17
+    },
+    {
+      "text": "new task",
+      "completed": false,
+      "deleted": false,
+      "createdAt": "2025-10-26T01:01:33.231Z",
+      "id": 18
     }
   ],
   "counts": {
     "uncompleted": 1,
-    "completed": 1,
-    "deleted": 1
+    "completed": 0,
+    "deleted": 17
   }
 }

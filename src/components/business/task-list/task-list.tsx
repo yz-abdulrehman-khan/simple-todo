@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { TaskItem } from '../task-item/task-item';
 import { cn, getPageNumbers } from '@/utils';
 import type { Task } from '@/types';
@@ -69,14 +70,7 @@ export const TaskList: React.FC<TaskListProps> = ({
             onClick={() => onPageChange(currentPage - 1)}
             disabled={!canGoPrevious}
           >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
+            <ChevronLeft className="w-4 h-4" />
           </Button>
 
           {pageNumbers.map((page, index) =>
@@ -107,9 +101,7 @@ export const TaskList: React.FC<TaskListProps> = ({
             onClick={() => onPageChange(currentPage + 1)}
             disabled={!canGoNext}
           >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+            <ChevronRight className="w-4 h-4" />
           </Button>
         </div>
       )}

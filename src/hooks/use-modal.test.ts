@@ -1,4 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
+import { MODAL_MODE } from '@/constants';
 import { useModal } from './use-modal';
 import type { Task } from '@/types';
 
@@ -12,54 +13,54 @@ describe('useModal', () => {
   };
 
   it('should initialize with modal closed', () => {
-    const { result } = renderHook(() => useModal());
+    const { result } = renderHook(() => useModal<Task>());
 
     expect(result.current.isOpen).toBe(false);
-    expect(result.current.mode).toBe('add');
-    expect(result.current.taskToEdit).toBeNull();
+    expect(result.current.mode).toBe(MODAL_MODE.ADD);
+    expect(result.current.data).toBeNull();
   });
 
   it('should open modal in add mode', () => {
-    const { result } = renderHook(() => useModal());
+    const { result } = renderHook(() => useModal<Task>());
     act(() => {
-      result.current.openModal('add');
+      result.current.openModal(MODAL_MODE.ADD);
     });
 
     expect(result.current.isOpen).toBe(true);
-    expect(result.current.mode).toBe('add');
-    expect(result.current.taskToEdit).toBeNull();
+    expect(result.current.mode).toBe(MODAL_MODE.ADD);
+    expect(result.current.data).toBeNull();
   });
 
   it('should open modal in edit mode without task', () => {
-    const { result } = renderHook(() => useModal());
+    const { result } = renderHook(() => useModal<Task>());
 
     act(() => {
-      result.current.openModal('edit');
+      result.current.openModal(MODAL_MODE.EDIT);
     });
 
     expect(result.current.isOpen).toBe(true);
-    expect(result.current.mode).toBe('edit');
-    expect(result.current.taskToEdit).toBeNull();
+    expect(result.current.mode).toBe(MODAL_MODE.EDIT);
+    expect(result.current.data).toBeNull();
   });
 
   it('should open modal in edit mode with task', () => {
-    const { result } = renderHook(() => useModal());
+    const { result } = renderHook(() => useModal<Task>());
 
     act(() => {
-      result.current.openModal('edit', mockTask);
+      result.current.openModal(MODAL_MODE.EDIT, mockTask);
     });
 
     expect(result.current.isOpen).toBe(true);
-    expect(result.current.mode).toBe('edit');
-    expect(result.current.taskToEdit).toEqual(mockTask);
+    expect(result.current.mode).toBe(MODAL_MODE.EDIT);
+    expect(result.current.data).toEqual(mockTask);
   });
 
   it('should close modal and reset state', () => {
-    const { result } = renderHook(() => useModal());
+    const { result } = renderHook(() => useModal<Task>());
 
     // Open modal in edit mode with task
     act(() => {
-      result.current.openModal('edit', mockTask);
+      result.current.openModal(MODAL_MODE.EDIT, mockTask);
     });
 
     expect(result.current.isOpen).toBe(true);
@@ -70,12 +71,12 @@ describe('useModal', () => {
     });
 
     expect(result.current.isOpen).toBe(false);
-    expect(result.current.mode).toBe('add');
-    expect(result.current.taskToEdit).toBeNull();
+    expect(result.current.mode).toBe(MODAL_MODE.ADD);
+    expect(result.current.data).toBeNull();
   });
 
   it('should maintain stable function references', () => {
-    const { result, rerender } = renderHook(() => useModal());
+    const { result, rerender } = renderHook(() => useModal<Task>());
 
     const openModal1 = result.current.openModal;
     const closeModal1 = result.current.closeModal;
@@ -90,11 +91,11 @@ describe('useModal', () => {
   });
 
   it('should handle multiple open/close cycles', () => {
-    const { result } = renderHook(() => useModal());
+    const { result } = renderHook(() => useModal<Task>());
 
     // First cycle
     act(() => {
-      result.current.openModal('add');
+      result.current.openModal(MODAL_MODE.ADD);
     });
     expect(result.current.isOpen).toBe(true);
 
@@ -105,15 +106,15 @@ describe('useModal', () => {
 
     // Second cycle
     act(() => {
-      result.current.openModal('edit', mockTask);
+      result.current.openModal(MODAL_MODE.EDIT, mockTask);
     });
     expect(result.current.isOpen).toBe(true);
-    expect(result.current.taskToEdit).toEqual(mockTask);
+    expect(result.current.data).toEqual(mockTask);
 
     act(() => {
       result.current.closeModal();
     });
     expect(result.current.isOpen).toBe(false);
-    expect(result.current.taskToEdit).toBeNull();
+    expect(result.current.data).toBeNull();
   });
 });

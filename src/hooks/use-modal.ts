@@ -1,31 +1,38 @@
 import { useState, useCallback } from 'react';
-import type { ModalState, ModalMode, Task } from '@/types';
+import { MODAL_MODE } from '@/constants';
+import type { ModalMode } from '@/types';
 
-interface UseModalReturn extends ModalState {
-  openModal: (mode: ModalMode, task?: Task) => void;
+interface ModalState<T = unknown> {
+  isOpen: boolean;
+  mode: ModalMode;
+  data: T | null;
+}
+
+interface UseModalReturn<T = unknown> extends ModalState<T> {
+  openModal: (mode: ModalMode, data?: T) => void;
   closeModal: () => void;
 }
 
-export const useModal = (): UseModalReturn => {
-  const [modalState, setModalState] = useState<ModalState>({
+export const useModal = <T = unknown>(): UseModalReturn<T> => {
+  const [modalState, setModalState] = useState<ModalState<T>>({
     isOpen: false,
-    mode: 'add',
-    taskToEdit: null,
+    mode: MODAL_MODE.ADD,
+    data: null,
   });
 
-  const openModal = useCallback((mode: ModalMode, task?: Task) => {
+  const openModal = useCallback((mode: ModalMode, data?: T) => {
     setModalState({
       isOpen: true,
       mode,
-      taskToEdit: task || null,
+      data: data || null,
     });
   }, []);
 
   const closeModal = useCallback(() => {
     setModalState({
       isOpen: false,
-      mode: 'add',
-      taskToEdit: null,
+      mode: MODAL_MODE.ADD,
+      data: null,
     });
   }, []);
 

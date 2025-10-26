@@ -7,4 +7,4 @@ export type {
   RequestConfig,
 } from './api.types';
 export type { PaginationState, PaginationParams, PaginationControls } from './pagination.types';
-export type { ModalMode, ModalState, TaskModalProps } from './modal.types';
+export type { ModalMode, TaskModalProps } from './modal.types';

@@ -189,7 +189,7 @@ describe('TodoPage', () => {
     useModal: {
       isOpen: false,
       mode: 'add' as const,
-      taskToEdit: null,
+      data: null,
       openModal: jest.fn(),
       closeModal: jest.fn(),
     },
@@ -400,7 +400,7 @@ describe('TodoPage', () => {
       ...defaultMocks.useModal,
       isOpen: true,
       mode: 'edit',
-      taskToEdit: mockTasks[0],
+      data: mockTasks[0],
     });
 
     const user = userEvent.setup();
@@ -440,7 +440,7 @@ describe('TodoPage', () => {
       ...defaultMocks.useModal,
       isOpen: true,
       mode: 'edit',
-      taskToEdit: mockTasks[0],
+      data: mockTasks[0],
     });
 
     const user = userEvent.setup();

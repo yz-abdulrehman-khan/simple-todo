@@ -17,7 +17,7 @@ export const TodoPage: React.FC = () => {
   });
 
   const { createTask, updateTask, toggleTaskCompletion, deleteTask } = useTaskMutations();
-  const { isOpen, mode, taskToEdit, openModal, closeModal } = useModal();
+  const { isOpen, mode, data: taskToEdit, openModal, closeModal } = useModal<Task>();
 
   const totalNonDeletedTasks = counts.uncompleted + counts.completed;
   const totalPages = Math.max(1, Math.ceil(totalNonDeletedTasks / PAGINATION_CONFIG.defaultLimit));

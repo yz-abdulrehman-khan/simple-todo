@@ -317,14 +317,14 @@
     {
       "text": "new",
       "completed": true,
-      "deleted": false,
+      "deleted": true,
       "createdAt": "2025-10-26T01:32:26.025Z",
       "id": 46
     },
     {
       "text": "new",
       "completed": true,
-      "deleted": false,
+      "deleted": true,
       "createdAt": "2025-10-26T01:32:28.598Z",
       "id": 47
     },
@@ -373,49 +373,49 @@
     {
       "text": "new",
       "completed": true,
-      "deleted": false,
+      "deleted": true,
       "createdAt": "2025-10-26T01:37:33.641Z",
       "id": 54
     },
     {
       "text": "new",
       "completed": true,
-      "deleted": false,
+      "deleted": true,
       "createdAt": "2025-10-26T01:37:38.731Z",
       "id": 55
     },
     {
       "text": "ww",
       "completed": true,
-      "deleted": false,
+      "deleted": true,
       "createdAt": "2025-10-26T01:39:24.657Z",
       "id": 56
     },
     {
       "text": "ww",
       "completed": true,
-      "deleted": false,
+      "deleted": true,
       "createdAt": "2025-10-26T01:39:27.851Z",
       "id": 57
     },
     {
       "text": "ww",
       "completed": true,
-      "deleted": false,
+      "deleted": true,
       "createdAt": "2025-10-26T01:39:31.635Z",
       "id": 58
     },
     {
       "text": "ww",
       "completed": true,
-      "deleted": false,
+      "deleted": true,
       "createdAt": "2025-10-26T01:39:34.942Z",
       "id": 59
     },
     {
       "text": "ww",
       "completed": true,
-      "deleted": false,
+      "deleted": true,
       "createdAt": "2025-10-26T01:39:37.460Z",
       "id": 60
     },
@@ -443,7 +443,7 @@
     {
       "text": "ew",
       "completed": true,
-      "deleted": false,
+      "deleted": true,
       "createdAt": "2025-10-26T01:40:32.936Z",
       "id": 64
     },
@@ -505,14 +505,35 @@
     {
       "text": "new",
       "completed": true,
-      "deleted": false,
+      "deleted": true,
       "createdAt": "2025-10-26T02:42:37.238Z",
       "id": 73
+    },
+    {
+      "text": "ٱلسَّلَامُ عَلَيْكُمْ",
+      "completed": false,
+      "deleted": true,
+      "createdAt": "2025-10-26T02:51:53.368Z",
+      "id": 74
+    },
+    {
+      "text": "new task",
+      "completed": false,
+      "deleted": false,
+      "createdAt": "2025-10-26T03:01:02.572Z",
+      "id": 75
+    },
+    {
+      "text": "new task 2",
+      "completed": true,
+      "deleted": false,
+      "createdAt": "2025-10-26T03:01:08.286Z",
+      "id": 76
     }
   ],
   "counts": {
-    "uncompleted": 0,
-    "completed": 11,
-    "deleted": 62
+    "uncompleted": 1,
+    "completed": 1,
+    "deleted": 74
   }
 }

@@ -12,6 +12,7 @@ import {
 } from '@/components/ui';
 import type { TaskModalProps } from '@/types';
 import { createTaskSchema } from '@/validations';
+import { MODAL_MODE } from '@/constants';
 
 export const TaskModal: React.FC<TaskModalProps> = ({
   isOpen,
@@ -66,9 +67,9 @@ export const TaskModal: React.FC<TaskModalProps> = ({
     <Dialog open={isOpen} onOpenChange={(open) => !open && handleCancel()}>
       <DialogContent className="sm:max-w-[525px]">
         <DialogHeader>
-          <DialogTitle>{mode === 'add' ? t('addTitle') : t('editTitle')}</DialogTitle>
+          <DialogTitle>{mode === MODAL_MODE.ADD ? t('addTitle') : t('editTitle')}</DialogTitle>
           <DialogDescription>
-            {mode === 'add' ? t('addDescription') : t('editDescription')}
+            {mode === MODAL_MODE.ADD ? t('addDescription') : t('editDescription')}
           </DialogDescription>
         </DialogHeader>
 
@@ -99,7 +100,7 @@ export const TaskModal: React.FC<TaskModalProps> = ({
               disabled={isSubmitting}
               className="bg-gray-900 text-white hover:bg-gray-800"
             >
-              {isSubmitting ? t('saving') : mode === 'add' ? t('add') : t('save')}
+              {isSubmitting ? t('saving') : mode === MODAL_MODE.ADD ? t('add') : t('save')}
             </Button>
           </DialogFooter>
         </form>

@@ -1,7 +1,7 @@
 import type { RequestConfig } from '@/types';
 import { API_BASE_URL } from '@/constants';
 import { API_CONFIG } from '@/configs';
-import { handleApiError } from '@/helpers';
+import { handleApiError } from '@/utils';
 
 class HttpClient {
   private baseURL: string;

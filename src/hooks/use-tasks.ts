@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import type { Task, TaskCounts, PaginationParams } from '@/types';
 import { taskService } from '@/services';
-import { getErrorMessage } from '@/helpers';
+import { getErrorMessage } from '@/utils';
 
 interface UseTasksReturn {
   tasks: Task[];

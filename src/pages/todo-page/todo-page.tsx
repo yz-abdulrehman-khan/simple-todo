@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { TaskHeader, TaskList, TaskModal } from '@/components/business';
 import { useTasks, useTaskMutations, useModal } from '@/hooks';
 import { PAGINATION_CONFIG } from '@/configs';
+import { MODAL_MODE } from '@/constants';
 import type { Task } from '@/types';
 
 export const TodoPage: React.FC = () => {
@@ -30,10 +31,10 @@ export const TodoPage: React.FC = () => {
   const canGoNext = currentPage < totalPages;
 
   const handleModalSubmit = async (text: string) => {
-    if (mode === 'add') {
+    if (mode === MODAL_MODE.ADD) {
       await createTask({ text });
       await refetchTasksOnly();
-    } else if (mode === 'edit' && taskToEdit) {
+    } else if (mode === MODAL_MODE.EDIT && taskToEdit) {
       await updateTask(taskToEdit.id, {
         text,
         completed: taskToEdit.completed,
@@ -65,7 +66,7 @@ export const TodoPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <TaskHeader counts={counts} onAddClick={() => openModal('add')} />
+      <TaskHeader counts={counts} onAddClick={() => openModal(MODAL_MODE.ADD)} />
 
       <main className="max-w-6xl mx-auto px-8 py-8">
         <TaskList
@@ -75,7 +76,7 @@ export const TodoPage: React.FC = () => {
           totalPages={totalPages}
           onToggleTask={handleToggleTask}
           onDeleteTask={handleDeleteTask}
-          onEditTask={(task: Task) => openModal('edit', task)}
+          onEditTask={(task: Task) => openModal(MODAL_MODE.EDIT, task)}
           onPageChange={setCurrentPage}
           canGoPrevious={canGoPrevious}
           canGoNext={canGoNext}

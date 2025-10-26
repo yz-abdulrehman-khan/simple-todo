@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import type { Task, CreateTaskDto, UpdateTaskDto } from '@/types';
 import { taskService } from '@/services';
-import { getErrorMessage } from '@/helpers';
+import { getErrorMessage } from '@/utils';
 
 interface UseTaskMutationsReturn {
   createTask: (data: CreateTaskDto) => Promise<Task | null>;
